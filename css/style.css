@@ -110,8 +110,8 @@ body {
     }
     
     .date-overlay {
-        font-size: 60px;
-        bottom: -5px;
+        font-size: 100px;
+        bottom: -8px;
         right: 0px;
     }
     
@@ -142,4 +142,5 @@ body {
     .full-width-photo {
         height: 400px;
     }
+
 }
