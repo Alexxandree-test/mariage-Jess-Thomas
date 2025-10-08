@@ -113,6 +113,9 @@ body {
         font-size: 100px;
         bottom: -8px;
         right: 0px;
+        text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.5),
+            1px 1px 8px rgba(0, 0, 0, 0.3);
     }
     
     .title-image {
@@ -133,6 +136,9 @@ body {
     .date-overlay {
         font-size: 70px;
         bottom: -5px;
+        text-shadow: 
+            2px 2px 3px rgba(0, 0, 0, 0.5),
+            1px 1px 6px rgba(0, 0, 0, 0.3);
     }
     
     .photo-grid {
@@ -144,6 +150,7 @@ body {
     }
 
 }
+
 
 
 
