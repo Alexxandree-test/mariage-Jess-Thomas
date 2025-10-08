@@ -63,7 +63,7 @@ body {
 
 /* Section titre */
 .title-section {
-    padding: 0px 20px;
+    padding: 0px;
     text-align: center;
     background-color: #ffffff;
 }
@@ -79,7 +79,6 @@ body {
 /* Section photo pleine largeur */
 .full-width-section {
     width: 100%;
-    margin-top: 40px;
 }
 
 .full-width-photo {
@@ -178,3 +177,4 @@ body {
     
 
 }
+
