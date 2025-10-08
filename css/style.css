@@ -65,7 +65,7 @@ body {
 .title-section {
     padding: 0px 20px;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #ff0000;
 }
 
 .title-image {
@@ -110,8 +110,8 @@ body {
     }
     
     .date-overlay {
-        font-size: 100px;
-        bottom: -8px;
+        font-size: 140px;
+        bottom: -10px;
         right: 0px;
     }
     
@@ -131,8 +131,8 @@ body {
     }
     
     .date-overlay {
-        font-size: 70px;
-        bottom: -5px;
+        font-size: 110px;
+        bottom: -8px;
     }
     
     .photo-grid {
@@ -144,6 +144,7 @@ body {
     }
 
 }
+
 
 
 
