@@ -97,6 +97,32 @@ body {
     object-position: top center;
 }
 
+/* Bouton RSVP */
+.rsvp-button {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5vw 4.5vw;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Vidaloka', serif;
+    font-size: clamp(14px, 1.8vw, 24px);
+    text-decoration: none;
+    letter-spacing: 0.2em;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+    white-space: nowrap;
+}
+
+.rsvp-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(5px);
+}
+
 /* Responsive - les photos restent côte à côte */
 @media (max-width: 768px) {
     .photo-grid {
@@ -124,6 +150,8 @@ body {
     .full-width-photo {
         height: 500px;
     }
+    
+
 }
 
 /* Pour les très petits écrans */
@@ -147,13 +175,6 @@ body {
     .full-width-photo {
         height: 400px;
     }
+    
 
 }
-
-
-
-
-
-
-
-
