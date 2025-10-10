@@ -135,7 +135,7 @@ body {
 }
 
 .rsvp-main-text {
-    font-size: 60px;
+    font-size: 55px;
     font-weight: bold;
     margin-bottom: 0.5em;
 }
@@ -181,14 +181,15 @@ body {
         top: 40%; /* remonte légèrement le bloc */
         width: 90%;
         padding: 0 10px;
+        white-space: nowrap;
     }
     .rsvp-main-text {
-        font-size: 42px; /* réduire la taille sur tablette/portable */
+        font-size: 36px; /* réduire la taille sur tablette/portable */
         line-height: 1.2;
         white-space: nowrap;
     }
     .rsvp-sub-text {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.4;
         white-space: nowrap;
     }
@@ -203,14 +204,15 @@ body {
         top: 38%;
         width: 95%;
         padding: 0 10px;
+        white-space: nowrap;
     }
     .rsvp-main-text {
-        font-size: 30px; /* encore plus petit sur téléphone */
+        font-size: 26px; /* encore plus petit sur téléphone */
         line-height: 1.2;
         white-space: nowrap;
     }
     .rsvp-sub-text {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.3;
         white-space: normal;
     }
