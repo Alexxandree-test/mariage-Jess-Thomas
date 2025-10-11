@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariage de Jessica et Thomas</title>
+    <script>
+        // Forcer le scroll en haut IMMÉDIATEMENT
+        history.scrollRestoration = 'manual';
+    </script>
     <!-- Import de la police Vidaloka -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,9 +15,32 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <script>
+        // Forcer le scroll en haut dès le chargement de la page
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+    </script>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">G6K & TMS</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#histoire">Notre Histoire</a></li>
+                <li><a href="#infos">Informations</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Section Hero avec les 3 photos -->
-        <section class="hero-section">
+        <section class="hero-section" id="accueil">
             <div class="photo-grid">
                 <div class="photo-item">
                     <img src="images/photo1.jpg" alt="Jessica et Thomas">
@@ -36,16 +63,45 @@
         </section>
 
         <!-- Section photo pleine largeur -->
-        <section class="full-width-section">
+        <section class="full-width-section" id="rsvp">
             <div class="full-width-photo">
                 <img src="images/photo6.jpg" alt="Jessica et Thomas">
                 <div class="rsvp-text">
-                <div class="rsvp-main-text">Confirmez votre présence</div>
-                <div class="rsvp-sub-text">Nous serions ravis de célébrer ce jour avec vous</div>
+                    <div class="rsvp-main-text">Confirmez votre présence</div>
+                    <div class="rsvp-sub-text">Nous serions ravis de célébrer ce jour avec vous</div>
                 </div>
                 <a href="rsvp.html" class="rsvp-button">RSVP ICI</a>
             </div>
         </section>
     </div>
+
+    <script>
+        // Menu burger
+        const burger = document.getElementById('burger');
+        const navMenu = document.getElementById('navMenu');
+
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fermer le menu au clic sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Effet de scroll sur la navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
