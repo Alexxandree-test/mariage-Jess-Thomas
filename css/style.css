@@ -8,17 +8,114 @@ body {
     font-family: 'Georgia', serif;
     background-color: #ffffff;
     overflow-x: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+/* Barre de navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(217, 186, 176, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 80px;
+}
+
+.navbar.scrolled {
+    background-color: rgba(217, 186, 176, 0.98);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    height: 100%;
+}
+
+.nav-logo {
+    font-family: 'Vidaloka', serif;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+    font-family: 'Vidaloka', serif;
+}
+
+.nav-menu a:hover {
+    color: #888;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.burger span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .container {
     width: 100%;
     min-height: 100vh;
+    padding-top: 0;
+    margin-top: 0; /* CHANGÉ: de 80px à 0 */
 }
 
-/* Section des photos */
+/* Section des photos avec animations */
 .hero-section {
     width: 100%;
     padding: 0;
+    margin: 0;
+    margin-top: 80px;
+    scroll-margin-top: 80px;  /* AJOUTÉ: compense la navbar */
+}
+
+section[id] {
+    scroll-margin-top: 80px;  /* AJOUTÉ: compense la navbar pour toutes les ancres */
 }
 
 .photo-grid {
@@ -28,13 +125,36 @@ body {
     width: 100%;
     background-color: #ffffff;
     padding: 0;
+    margin: 0;
 }
 
 .photo-item {
     position: relative;
     width: 100%;
-    height: 370px;
+    height: 450px;
     overflow: visible;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+.photo-item:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.photo-item:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.photo-item:nth-child(3) {
+    animation-delay: 1.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .photo-item img {
@@ -63,9 +183,10 @@ body {
 
 /* Section titre */
 .title-section {
-    padding: 0px;
+    padding: 0; /* CHANGÉ: de 0px à 0 (mais c'était déjà bon) */
     text-align: center;
     background-color: #ffffff;
+    margin: 0; /* AJOUTÉ: pour être sûr qu'il n'y a pas de marge */
 }
 
 .title-image {
@@ -83,7 +204,7 @@ body {
 
 .full-width-photo {
     width: 100%;
-    height: 700px;
+    height: 800px;
     overflow: hidden;
     position: relative;
 }
@@ -94,7 +215,7 @@ body {
     display: block;
     opacity: 0.6;
     object-fit: cover;
-    object-position: top center;
+    object-position: center center;
 }
 
 /* Bouton RSVP */
@@ -125,7 +246,7 @@ body {
 
 .rsvp-text {
     position: absolute;
-    top: 45%; /* légèrement au-dessus du bouton */
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -145,15 +266,46 @@ body {
     font-weight: normal;
 }
 
-/* Responsive - les photos restent côte à côte */
+/* Responsive tablette */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 15px 20px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(217, 186, 176, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px 0;
+        gap: 30px;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .container {
+        padding-top: 0;
+        margin-top: 70px;
+    }
+
     .photo-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 4px;
     }
     
     .photo-item {
-        height: 250px;
+        height: 300px;
     }
     
     .date-overlay {
@@ -170,62 +322,38 @@ body {
     }
     
     .full-width-photo {
-        height: 500px;
+        height: 600px;
     }
-    
 
-}
-
-@media (max-width: 768px) {
     .rsvp-text {
-        top: 40%; /* remonte légèrement le bloc */
+        top: 40%;
         width: 90%;
         padding: 0 10px;
         white-space: nowrap;
     }
+    
     .rsvp-main-text {
-        font-size: 36px; /* réduire la taille sur tablette/portable */
+        font-size: 36px;
         line-height: 1.2;
         white-space: nowrap;
     }
+    
     .rsvp-sub-text {
         font-size: 18px;
         line-height: 1.4;
         white-space: nowrap;
     }
+    
     .rsvp-button {
         font-size: 16px;
         padding: 10px 20px;
     }
 }
 
-@media (max-width: 480px) {
-    .rsvp-text {
-        top: 38%;
-        width: 95%;
-        padding: 0 10px;
-        white-space: nowrap;
-    }
-    .rsvp-main-text {
-        font-size: 26px; /* encore plus petit sur téléphone */
-        line-height: 1.2;
-        white-space: nowrap;
-    }
-    .rsvp-sub-text {
-        font-size: 16px;
-        line-height: 1.3;
-        white-space: normal;
-    }
-    .rsvp-button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-}
-
-/* Pour les très petits écrans */
+/* Responsive mobile */
 @media (max-width: 480px) {
     .photo-item {
-        height: 180px;
+        height: 220px;
     }
     
     .date-overlay {
@@ -241,9 +369,30 @@ body {
     }
     
     .full-width-photo {
-        height: 400px;
+        height: 500px;
+    }
+
+    .rsvp-text {
+        top: 38%;
+        width: 95%;
+        padding: 0 10px;
+        white-space: nowrap;
     }
     
-
+    .rsvp-main-text {
+        font-size: 26px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+    
+    .rsvp-sub-text {
+        font-size: 16px;
+        line-height: 1.3;
+        white-space: normal;
+    }
+    
+    .rsvp-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }
-
