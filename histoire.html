@@ -12,27 +12,81 @@
     <link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        body {
+            overflow: hidden;
+        }
+
         .histoire-container {
             width: 100%;
-            min-height: 100vh;
+            height: 100vh;
             background-image: url('images/Notre-histoire.png');
             background-size: cover;
-            background-position: center;
+            background-position: center bottom;
             background-repeat: no-repeat;
-            background-attachment: fixed;
             margin-top: 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+        }
+
+        .histoire-text {
+            max-width: 600px;
+            padding: 50px;
+            margin-right: 160px;
+        }
+
+        .histoire-text p {
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .histoire-text p:last-child {
+            margin-bottom: 0;
         }
 
         @media (max-width: 768px) {
             .histoire-container {
                 margin-top: 55px;
-                background-attachment: scroll;
+                padding: 40px 20px;
+                padding-top: 95px;
+                justify-content: center;
+            }
+
+            .histoire-text {
+                margin-right: 0;
+                max-width: 100%;
+                padding: 30px;
+            }
+
+            .histoire-text p {
+                font-size: 15px;
             }
         }
 
         @media (max-width: 480px) {
             .histoire-container {
                 margin-top: 50px;
+                padding: 30px 15px;
+                padding-top: 80px;
+            }
+
+            .histoire-text {
+                padding: 25px;
+            }
+
+            .histoire-text p {
+                font-size: 14px;
+                line-height: 1.7;
             }
         }
     </style>
@@ -46,12 +100,12 @@
     <!-- Barre de navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="home.html" class="nav-logo">G6K & TMS</a>
+            <a href="index.html" class="nav-logo">G6K & TMS</a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="home.html#accueil">Accueil</a></li>
+                <li><a href="index.html#accueil">Accueil</a></li>
                 <li><a href="histoire.html">Notre Histoire</a></li>
-                <li><a href="home.html#infos">Informations</a></li>
-                <li><a href="home.html#rsvp">RSVP</a></li>
+                <li><a href="index.html#infos">Informations</a></li>
+                <li><a href="index.html#rsvp">RSVP</a></li>
             </ul>
             <div class="burger" id="burger">
                 <span></span>
@@ -62,7 +116,15 @@
     </nav>
 
     <!-- Container avec l'image en fond -->
-    <div class="histoire-container"></div>
+    <div class="histoire-container">
+        <div class="histoire-text">
+            <p>Nous nous sommes rencontrés il y a plus de huit ans, dans notre ville de cœur, le Grau-du-Roi, dans un petit parc de loisirs où nous avons tous les deux grandi. Au fil des années, nous avons construit notre vie ensemble : à 18 ans, nous avons emménagé, et à 19 ans, nous avons accueilli l'amour de notre vie, notre petite Nala.</p>
+            
+            <p>À l'approche de nos dix ans de relation, nous avons réalisé que les mots « copain » et « copine » ne suffisaient plus à décrire ce lien si fort et unique qui nous unit. C'est pourquoi nous avons décidé de franchir cette nouvelle étape, de se dire « oui » et de nous unir pour la vie.</p>
+            
+            <p>Nous avons hâte de partager ce moment magique avec vous et de célébrer notre amour entourés de nos proches.</p>
+        </div>
+    </div>
 
     <script>
         // Menu burger
