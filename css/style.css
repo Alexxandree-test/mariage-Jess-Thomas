@@ -26,7 +26,7 @@ html {
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    height: 80px;
+    height: 60px;
 }
 
 .navbar.scrolled {
@@ -40,13 +40,13 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 15px 40px;
     height: 100%;
 }
 
 .nav-logo {
     font-family: 'Vidaloka', serif;
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
     text-decoration: none;
     font-weight: bold;
@@ -55,14 +55,14 @@ html {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 30px;
     align-items: center;
 }
 
 .nav-menu a {
     color: #333;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
     font-family: 'Vidaloka', serif;
@@ -76,18 +76,18 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    gap: 5px;
+    gap: 4px;
 }
 
 .burger span {
     width: 25px;
-    height: 3px;
+    height: 2px;
     background-color: #333;
     transition: all 0.3s ease;
 }
 
 .burger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
+    transform: rotate(45deg) translate(7px, 7px);
 }
 
 .burger.active span:nth-child(2) {
@@ -95,14 +95,14 @@ html {
 }
 
 .burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 .container {
     width: 100%;
     min-height: 100vh;
     padding-top: 0;
-    margin-top: 0; /* CHANGÉ: de 80px à 0 */
+    margin-top: 0;
 }
 
 /* Section des photos avec animations */
@@ -110,12 +110,12 @@ html {
     width: 100%;
     padding: 0;
     margin: 0;
-    margin-top: 80px;
-    scroll-margin-top: 80px;  /* AJOUTÉ: compense la navbar */
+    margin-top: 60px;
+    scroll-margin-top: 60px;
 }
 
 section[id] {
-    scroll-margin-top: 80px;  /* AJOUTÉ: compense la navbar pour toutes les ancres */
+    scroll-margin-top: 60px;
 }
 
 .photo-grid {
@@ -183,10 +183,10 @@ section[id] {
 
 /* Section titre */
 .title-section {
-    padding: 0; /* CHANGÉ: de 0px à 0 (mais c'était déjà bon) */
+    padding: 0;
     text-align: center;
     background-color: #ffffff;
-    margin: 0; /* AJOUTÉ: pour être sûr qu'il n'y a pas de marge */
+    margin: 0;
 }
 
 .title-image {
@@ -268,14 +268,18 @@ section[id] {
 
 /* Responsive tablette */
 @media (max-width: 768px) {
+    .navbar {
+        height: 55px;
+    }
+
     .nav-container {
-        padding: 15px 20px;
+        padding: 12px 20px;
     }
 
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 55px;
         flex-direction: column;
         background-color: rgba(217, 186, 176, 0.98);
         width: 100%;
@@ -296,7 +300,16 @@ section[id] {
 
     .container {
         padding-top: 0;
-        margin-top: 70px;
+        margin-top: 55px;
+    }
+
+    .hero-section {
+        margin-top: 55px;
+        scroll-margin-top: 55px;
+    }
+
+    section[id] {
+        scroll-margin-top: 55px;
     }
 
     .photo-grid {
@@ -352,6 +365,35 @@ section[id] {
 
 /* Responsive mobile */
 @media (max-width: 480px) {
+    .navbar {
+        height: 50px;
+    }
+
+    .nav-container {
+        padding: 10px 15px;
+    }
+
+    .nav-logo {
+        font-size: 18px;
+    }
+
+    .nav-menu {
+        top: 50px;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .hero-section {
+        margin-top: 50px;
+        scroll-margin-top: 50px;
+    }
+
+    section[id] {
+        scroll-margin-top: 50px;
+    }
+
     .photo-item {
         height: 220px;
     }
