@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jessica & Thomas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        /* Sur ordinateur : video prend toute la hauteur, bandes noires sur les côtés */
+        video {
+            width: auto;
+            height: 100vh;
+            max-width: 100vw;
+            object-fit: contain;
+        }
+
+        .skip-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            font-family: 'Vidaloka', serif;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        .skip-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Sur mobile : video prend tout l'écran en mode cover */
+        @media (max-width: 768px) {
+            video {
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+            }
+
+            .skip-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Ajustement pour très petits écrans */
+        @media (max-width: 480px) {
+            .skip-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vidaloka&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="video-container" id="videoContainer">
+        <video id="introVideo" autoplay muted playsinline>
+            <source src="images/Video-mariage.MOV" type="video/quicktime">
+            <source src="images/Video-mariage.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <button class="skip-button" id="skipButton">PASSER</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('introVideo');
+        const skipButton = document.getElementById('skipButton');
+        const container = document.getElementById('videoContainer');
+
+        function goToMainSite() {
+            container.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 1000);
+        }
+
+        video.addEventListener('ended', goToMainSite);
+        skipButton.addEventListener('click', goToMainSite);
+        video.addEventListener('click', goToMainSite);
+    </script>
+</body>
+</html>
