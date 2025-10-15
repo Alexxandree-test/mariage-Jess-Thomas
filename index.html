@@ -22,18 +22,16 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            display: flex;
+            display: none; /* Caché par défaut sur desktop */
             justify-content: center;
             align-items: center;
             background-color: #000;
         }
 
-        /* Sur ordinateur : video prend toute la hauteur, bandes noires sur les côtés */
         video {
-            width: auto;
+            width: 100vw;
             height: 100vh;
-            max-width: 100vw;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .skip-button {
@@ -68,12 +66,10 @@
             }
         }
 
-        /* Sur mobile : video prend tout l'écran en mode cover */
+        /* Afficher la vidéo UNIQUEMENT sur mobile */
         @media (max-width: 768px) {
-            video {
-                width: 100vw;
-                height: 100vh;
-                object-fit: cover;
+            .video-container {
+                display: flex;
             }
 
             .skip-button {
@@ -84,13 +80,19 @@
             }
         }
 
-        /* Ajustement pour très petits écrans */
         @media (max-width: 480px) {
             .skip-button {
                 bottom: 15px;
                 right: 15px;
                 padding: 10px 20px;
                 font-size: 12px;
+            }
+        }
+
+        /* Sur desktop, redirection immédiate */
+        @media (min-width: 769px) {
+            body {
+                display: none;
             }
         }
     </style>
@@ -100,7 +102,7 @@
 </head>
 <body>
     <div class="video-container" id="videoContainer">
-        <video id="introVideo" autoplay muted playsinline>
+        <video id="introVideo" autoplay playsinline>
             <source src="images/Video-mariage.MOV" type="video/quicktime">
             <source src="images/Video-mariage.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
@@ -113,7 +115,25 @@
         const skipButton = document.getElementById('skipButton');
         const container = document.getElementById('videoContainer');
 
+        // Vérifier si on est sur desktop ou si la vidéo a déjà été vue
+        function checkAndRedirect() {
+            const isMobile = window.innerWidth <= 768;
+            const hasSeenVideo = sessionStorage.getItem('videoSeen');
+            
+            // Si desktop OU vidéo déjà vue, redirection immédiate
+            if (!isMobile || hasSeenVideo === 'true') {
+                window.location.href = 'home.html';
+                return;
+            }
+        }
+
+        // Vérifier dès le chargement
+        checkAndRedirect();
+
         function goToMainSite() {
+            // Marquer la vidéo comme vue
+            sessionStorage.setItem('videoSeen', 'true');
+            
             container.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'home.html';
@@ -123,6 +143,9 @@
         video.addEventListener('ended', goToMainSite);
         skipButton.addEventListener('click', goToMainSite);
         video.addEventListener('click', goToMainSite);
+
+        // Vérifier lors du redimensionnement de la fenêtre
+        window.addEventListener('resize', checkAndRedirect);
     </script>
 </body>
 </html>
