@@ -88,13 +88,6 @@
                 font-size: 12px;
             }
         }
-
-        /* Sur desktop, redirection immédiate */
-        @media (min-width: 769px) {
-            body {
-                display: none;
-            }
-        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,19 +109,18 @@
         const container = document.getElementById('videoContainer');
 
         // Vérifier si on est sur desktop ou si la vidéo a déjà été vue
-        function checkAndRedirect() {
-            const isMobile = window.innerWidth <= 768;
-            const hasSeenVideo = sessionStorage.getItem('videoSeen');
-            
-            // Si desktop OU vidéo déjà vue, redirection immédiate
-            if (!isMobile || hasSeenVideo === 'true') {
-                window.location.href = 'home.html';
-                return;
-            }
+        const isMobile = window.innerWidth <= 768;
+        const hasSeenVideo = sessionStorage.getItem('videoSeen');
+        
+        // Si desktop OU vidéo déjà vue, redirection immédiate
+        if (!isMobile || hasSeenVideo === 'true') {
+            window.location.href = 'home.html';
+        } else {
+            // Sur mobile et première visite : lancer la vidéo
+            video.play().catch(err => {
+                console.log("Autoplay bloqué, l'utilisateur doit interagir");
+            });
         }
-
-        // Vérifier dès le chargement
-        checkAndRedirect();
 
         function goToMainSite() {
             // Marquer la vidéo comme vue
@@ -143,9 +135,6 @@
         video.addEventListener('ended', goToMainSite);
         skipButton.addEventListener('click', goToMainSite);
         video.addEventListener('click', goToMainSite);
-
-        // Vérifier lors du redimensionnement de la fenêtre
-        window.addEventListener('resize', checkAndRedirect);
     </script>
 </body>
 </html>
