@@ -95,8 +95,7 @@
 </head>
 <body>
     <div class="video-container" id="videoContainer">
-        <video id="introVideo" autoplay playsinline>
-            <source src="images/Video-mariage.MOV" type="video/quicktime">
+        <video id="introVideo" autoplay muted playsinline>
             <source src="images/Video-mariage.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
@@ -116,16 +115,14 @@
         if (!isMobile || hasSeenVideo === 'true') {
             window.location.href = 'home.html';
         } else {
-            // Sur mobile et première visite : lancer la vidéo
+            // Sur mobile : forcer la lecture en muted
             video.play().catch(err => {
-                console.log("Autoplay bloqué, l'utilisateur doit interagir");
+                console.log("Erreur autoplay:", err);
             });
         }
 
         function goToMainSite() {
-            // Marquer la vidéo comme vue
             sessionStorage.setItem('videoSeen', 'true');
-            
             container.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'home.html';
@@ -134,7 +131,6 @@
 
         video.addEventListener('ended', goToMainSite);
         skipButton.addEventListener('click', goToMainSite);
-        video.addEventListener('click', goToMainSite);
     </script>
 </body>
 </html>
